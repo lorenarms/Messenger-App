@@ -28,65 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSend = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.txtInfo = new System.Windows.Forms.TextBox();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.txtIP = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.listClientIP = new System.Windows.Forms.ListBox();
+            this.lstClientIP = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button2
+            // btnSend
             // 
-            this.button2.Location = new System.Drawing.Point(570, 444);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 45);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Send";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSend.Location = new System.Drawing.Point(578, 655);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(137, 45);
+            this.btnSend.TabIndex = 13;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 407);
+            this.label2.Location = new System.Drawing.Point(4, 618);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 25);
             this.label2.TabIndex = 12;
             this.label2.Text = "Message:";
             // 
-            // textBox3
+            // txtMessage
             // 
-            this.textBox3.Location = new System.Drawing.Point(116, 407);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(734, 31);
-            this.textBox3.TabIndex = 11;
+            this.txtMessage.Location = new System.Drawing.Point(116, 618);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(734, 31);
+            this.txtMessage.TabIndex = 11;
             // 
-            // textBox2
+            // txtInfo
             // 
-            this.textBox2.Location = new System.Drawing.Point(116, 60);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(734, 341);
-            this.textBox2.TabIndex = 10;
+            this.txtInfo.Location = new System.Drawing.Point(116, 66);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtInfo.Size = new System.Drawing.Size(734, 546);
+            this.txtInfo.TabIndex = 10;
             // 
-            // button1
+            // btnStart
             // 
-            this.button1.Location = new System.Drawing.Point(713, 444);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 45);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnStart.Location = new System.Drawing.Point(721, 655);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(137, 45);
+            this.btnStart.TabIndex = 9;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // textBox1
+            // txtIP
             // 
-            this.textBox1.Location = new System.Drawing.Point(116, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(734, 31);
-            this.textBox1.TabIndex = 8;
+            this.txtIP.Location = new System.Drawing.Point(116, 23);
+            this.txtIP.Name = "txtIP";
+            this.txtIP.Size = new System.Drawing.Size(734, 31);
+            this.txtIP.TabIndex = 8;
+            this.txtIP.Text = "127.0.0.1:9000";
             // 
             // label1
             // 
@@ -96,15 +100,16 @@
             this.label1.Size = new System.Drawing.Size(81, 25);
             this.label1.TabIndex = 7;
             this.label1.Text = "Server:";
+            
             // 
-            // listClientIP
+            // lstClientIP
             // 
-            this.listClientIP.FormattingEnabled = true;
-            this.listClientIP.ItemHeight = 25;
-            this.listClientIP.Location = new System.Drawing.Point(856, 60);
-            this.listClientIP.Name = "listClientIP";
-            this.listClientIP.Size = new System.Drawing.Size(293, 429);
-            this.listClientIP.TabIndex = 14;
+            this.lstClientIP.FormattingEnabled = true;
+            this.lstClientIP.ItemHeight = 25;
+            this.lstClientIP.Location = new System.Drawing.Point(861, 66);
+            this.lstClientIP.Name = "lstClientIP";
+            this.lstClientIP.Size = new System.Drawing.Size(293, 629);
+            this.lstClientIP.TabIndex = 14;
             // 
             // label3
             // 
@@ -119,18 +124,20 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 504);
+            this.ClientSize = new System.Drawing.Size(1202, 738);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.listClientIP);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.lstClientIP);
+            this.Controls.Add(this.btnSend);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMessage);
+            this.Controls.Add(this.txtInfo);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.txtIP);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "Server";
             this.Text = "TCP/IP Server";
+            this.Load += new System.EventHandler(this.Server_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,14 +145,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.TextBox txtInfo;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listClientIP;
+        private System.Windows.Forms.ListBox lstClientIP;
         private System.Windows.Forms.Label label3;
     }
 }
