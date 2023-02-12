@@ -14,7 +14,7 @@ namespace client
             var startInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                RedirectStandardInput = false,
+                RedirectStandardInput = false,  // setting this to 'false' allows for 'timeout /T' to work as arg
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
@@ -33,6 +33,41 @@ namespace client
 
             process.CloseMainWindow();
             
+        }
+
+        public static string RunCommandWithReturn(List<string> command)
+        {
+            string result = string.Empty;
+            string commands = string.Empty;
+
+            foreach (var item in command)
+            {
+                commands += item;
+                commands += " & ";
+            }
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                RedirectStandardInput = false,  // setting this to 'false' allows for 'timeout /T' to work as arg
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = false,
+                Arguments = commands,
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+            };
+            var process = new Process { StartInfo = startInfo };
+
+            process.Start();
+
+            result = process.StandardOutput.ReadToEnd();
+            result = result.ToString().TrimEnd('\r', '\n');
+
+            //process.CloseMainWindow();
+
+            return result;
+
         }
     }
 }

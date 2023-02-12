@@ -104,7 +104,8 @@ namespace client
             // 
             // Client
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(932, 558);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.label2);
@@ -113,6 +114,7 @@ namespace client
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.txtIP);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Client";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
